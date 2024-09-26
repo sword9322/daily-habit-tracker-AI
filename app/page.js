@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { ArrowRight, Check, BarChart, Zap, Trophy } from 'lucide-react'
 
+
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-purple-500 to-indigo-600">

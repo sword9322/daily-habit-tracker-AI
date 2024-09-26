@@ -1,30 +1,35 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import mongoose from '../db/db'; // Import mongoose from db.ts
+import mongoose from '../../app/db/db'; // Adjust the import path
 import jwt from 'jsonwebtoken';
 
 interface User {
   username: string;
   password: string;
+  firstName: string;
+  lastName: string;
 }
 
 const userSchema = new mongoose.Schema<User>({
-  username: String,
-  password: String,
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 const register = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    console.log('chegou2');
-    const { username, password } = req.body;
-    console.log('chegou');
+    const { username, password, firstName, lastName } = req.body;
+
     // Create a new user
-    const user = new User({ username, password });
+    const user = new User({ username, password, firstName, lastName });
 
     try {
       await user.save();
+      console.log('User saved:', user); // Add logging here
     } catch (error) {
+      console.error('Error saving user:', error); // Add logging here
       return res.status(500).json({ error: 'Failed to create user' });
     }
 

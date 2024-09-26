@@ -1,14 +1,17 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost:27017/mydatabase');
+const connectDB = async () => {
+  if (mongoose.connection.readyState === 0) { // Check if not already connected
+    try {
+      await mongoose.connect(process.env.MONGODB_URI!); // Non-null assertion
+      console.log('Connected to MongoDB');
+    } catch (error) {
+      console.error('Error connecting to MongoDB:', error);
+    }
+  }
+};
 
-mongoose.connection.on('error', (error) => {
-  console.error('Error connecting to MongoDB:', error);
-});
-
-mongoose.connection.on('connected', () => {
-  console.log('Connected to MongoDB');
-});
+connectDB(); // Connect immediately when the module is imported
 
 export default mongoose;
 

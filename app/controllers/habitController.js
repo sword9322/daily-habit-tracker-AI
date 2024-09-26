@@ -1,6 +1,6 @@
-const Habit = require('../models/habit');
+import Habit from '../models/habit.cjs';
 
-exports.createHabit = async (req, res) => {
+export const createHabit = async (req, res) => {
   try {
     const habit = new Habit(req.body);
     await habit.save();
@@ -10,7 +10,7 @@ exports.createHabit = async (req, res) => {
   }
 };
 
-exports.getHabits = async (req, res) => {
+export const getHabits = async (req, res) => {
   try {
     const habits = await Habit.find();
     res.json(habits);
@@ -19,7 +19,7 @@ exports.getHabits = async (req, res) => {
   }
 };
 
-exports.deleteHabit = async (req, res) => {
+export const deleteHabit = async (req, res) => {
   try {
     const habit = await Habit.findByIdAndDelete(req.params.id);
     if (!habit) {

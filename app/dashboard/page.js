@@ -73,12 +73,12 @@ export default function Dashboard() {
     }
   };
 
-  const handleAiQuery = (/*e: React.FormEvent*/) => {
-    e.preventDefault()
+  const handleAiQuery = (e) => {
+    e.preventDefault();
     // Here you would typically send the query to your AI service
-    console.log('AI Query:', aiQuery)
-    setAiQuery('')
-  }
+    console.log('AI Query:', aiQuery);
+    setAiQuery('');
+  };
 
   const openModal = () => {
     setIsModalOpen(true); // Open modal
@@ -109,7 +109,7 @@ export default function Dashboard() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Welcome back, {user?.name}
+                  Welcome back, {user?.firstName} {user?.lastName}
                 </h1>
                 <p className="mx-auto max-w-[700px] text-white/90 md:text-xl">
                   You&apos;re on a 7-day streak. Keep up the great work!
@@ -120,9 +120,9 @@ export default function Dashboard() {
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-white/10 backdrop-blur-lg">
           <div className="container px-4 md:px-6 mx-auto">
-          <div className='text-white'>
-          <DateNavigator />
-        </div>
+            <div className='text-white'>
+              <DateNavigator />
+            </div>
             <h2 className="text-2xl font-bold text-white mb-4">Your Habits</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {habits.map((habit) => (
@@ -134,24 +134,24 @@ export default function Dashboard() {
               ))}
 
               <div className="bg-white/20 backdrop-blur-lg border-none text-white rounded-lg p-4 flex flex-col items-center justify-center">
-              <button
-                onClick={openModal} // Open the modal on button click
-                className="flex items-center justify-center bg-white/20 text-white py-2 px-4 rounded-md hover:bg-white/30 transition-colors"
-              >
-                <Plus className="h-5 w-5 mr-2" />
-                Add New Habit
-              </button>
-              {isModalOpen && (
-                <Modal
-                  habits={habits}
-                  setHabits={setHabits}
-                  newHabit={newHabit}
-                  setNewHabit={setNewHabit}
-                  isModalOpen={isModalOpen}
-                  setIsModalOpen={setIsModalOpen}
-                  handleAddHabit={handleAddHabit}
-                />
-              )}
+                <button
+                  onClick={openModal} // Open the modal on button click
+                  className="flex items-center justify-center bg-white/20 text-white py-2 px-4 rounded-md hover:bg-white/30 transition-colors"
+                >
+                  <Plus className="h-5 w-5 mr-2" />
+                  Add New Habit
+                </button>
+                {isModalOpen && (
+                  <Modal
+                    habits={habits}
+                    setHabits={setHabits}
+                    newHabit={newHabit}
+                    setNewHabit={setNewHabit}
+                    isModalOpen={isModalOpen}
+                    setIsModalOpen={setIsModalOpen}
+                    handleAddHabit={handleAddHabit}
+                  />
+                )}
               </div>
             </div>
           </div>
