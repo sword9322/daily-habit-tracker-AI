@@ -9,6 +9,9 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
+    if (!config.secretKey) {
+      throw new Error('SECRET_KEY is not defined');
+    }
     const decoded = jwt.verify(token, config.secretKey);
     req.user = decoded;
     next();

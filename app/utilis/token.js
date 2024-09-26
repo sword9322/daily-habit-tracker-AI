@@ -8,6 +8,9 @@ const generateToken = (user) => {
     email: user.email,
   };
 
+  if (!config.secretKey) {
+    throw new Error('SECRET_KEY is not defined');
+  }
   const token = jwt.sign(payload, config.secretKey, {
     expiresIn: '1h',
   });
