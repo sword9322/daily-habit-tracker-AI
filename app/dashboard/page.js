@@ -23,7 +23,7 @@ export default function Dashboard() {
       fetchUserData(token);
       fetchHabits(token);
     }
-  }, []);
+  }, [router]); // Add router to the dependency array
 
   const fetchUserData = async (token) => {
     try {
@@ -112,7 +112,7 @@ export default function Dashboard() {
                   Welcome back, {user?.name}
                 </h1>
                 <p className="mx-auto max-w-[700px] text-white/90 md:text-xl">
-                  You're on a 7-day streak. Keep up the great work!
+                  You&apos;re on a 7-day streak. Keep up the great work!
                 </p>
               </div>
             </div>

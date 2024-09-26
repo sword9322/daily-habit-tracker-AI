@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from '../../components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 export default function HabitsPage() {

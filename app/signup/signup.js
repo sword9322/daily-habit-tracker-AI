@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { Eye, EyeOff } from 'lucide-react';  // If using Lucide React
+// OR
+// import { Eye, EyeOff } from 'react-icons/fi';  // If using React Icons (Feather icons set)
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -75,9 +78,9 @@ export default function SignUp() {
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-white"
             >
               {showPassword ? (
-                <EyeOff className="h-5 w-5" />
+                <EyeOff className="h-5 w-5 text-gray-400" />
               ) : (
-                <Eye className="h-5 w-5" />
+                <Eye className="h-5 w-5 text-gray-400" />
               )}
             </button>
           </div>
